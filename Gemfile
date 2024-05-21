@@ -22,6 +22,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'debug'
+  gem 'haml-rails'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'sgcop', github: 'SonicGarden/sgcop'
