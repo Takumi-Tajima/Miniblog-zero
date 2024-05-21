@@ -32,5 +32,6 @@ group :development, :test do
 end
 
 group :development do
+  gem 'haml_lint', require: false
   gem 'web-console'
 end
