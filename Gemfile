@@ -12,6 +12,7 @@ gem 'puma', '>= 5.0'
 
 gem 'importmap-rails'
 
+gem 'simple_form'
 gem 'turbo-rails'
 
 gem 'stimulus-rails'
