@@ -23,6 +23,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   gem 'debug'
   gem 'rubocop', require: false
+  gem 'sgcop', github: 'SonicGarden/sgcop'
 end
 
 group :development do
