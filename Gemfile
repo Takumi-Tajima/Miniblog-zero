@@ -22,6 +22,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'debug'
+  gem 'rubocop', require: false
 end
 
 group :development do
