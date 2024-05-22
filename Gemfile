@@ -37,3 +37,7 @@ group :development do
   gem 'haml_lint', require: false
   gem 'web-console'
 end
+
+group :test do
+  gem 'capybara'
+end
