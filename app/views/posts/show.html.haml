@@ -1,12 +1,11 @@
-%p#notice= notice
-
-%p
-  %b Content:
-  = @post.content
-%p
-  %b User:
-  = @post.user
-
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path
+.p-4.d-flex.flex-column.justify-content-center.mt-6
+  .post-container.p-3
+    .mb-3
+      = @post.user.name
+    .fs-4
+      = @post.content
+    .small.opacity-50.text-end.mt-2
+      = @post.created_at
+  .d-flex.justify-content-between.mt-3
+    = link_to '編集', edit_post_path, class: 'btn btn-success'
+    = link_to '削除', post_path(@post), data: { turbo_method: :delete }, class: 'btn btn-danger'
