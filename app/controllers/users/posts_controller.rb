@@ -34,7 +34,7 @@ class Users::PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def post_params
