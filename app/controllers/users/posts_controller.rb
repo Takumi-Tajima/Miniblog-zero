@@ -1,6 +1,5 @@
 class Users::PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
-  skip_before_action :authenticate_user!
 
   def new
     @post = current_user.posts.build
