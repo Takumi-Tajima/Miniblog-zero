@@ -32,9 +32,9 @@ RSpec.describe 'ポスト機能', type: :system do
       click_on '新規投稿'
       fill_in '内容', with: 'fuga'
       expect do
-        click_on '作成'
+        click_on '登録する'
         expect(page).to have_content '投稿を登録しました'
-      end.to change(user.posts).by(1)
+      end.to change(user.posts, :count).by(1)
       expect(page).to have_content 'fuga'
       expect(page).to have_content 'jojo'
     end
