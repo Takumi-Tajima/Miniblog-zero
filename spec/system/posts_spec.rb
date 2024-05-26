@@ -3,22 +3,20 @@ require 'rails_helper'
 RSpec.describe 'ポスト機能', type: :system do
   context 'ログインしてない時' do
     let(:user) { create(:user, name: 'hoge') }
-    let!(:post) { create(:post, user:, content: 'hogehoge') }
+    let!(:post) { create(:post, user:, content: 'hogehoge', created_at: '2024-01-01 10:00:00') }
 
     it 'ポストの投稿一覧を閲覧できること' do
       visit root_path
-      # 投稿者名
       expect(page).to have_content 'hoge'
-      # 投稿本文
       expect(page).to have_content 'hogehoge'
+      expect(page).to have_content '01月01日(月)'
     end
 
     it 'ポストの詳細画面を閲覧できること' do
       visit post_path(post)
-      # 投稿者名
       expect(page).to have_content 'hoge'
-      # 投稿本文
       expect(page).to have_content 'hogehoge'
+      expect(page).to have_content '01月01日(月)'
     end
   end
 
