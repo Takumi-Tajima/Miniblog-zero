@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'ポスト機能', type: :system do
   context 'ログインしてない時' do
     let(:user) { create(:user, name: 'hoge') }
-    let(:post) { create(:post, :user, content: 'hogehoge') }
+    let!(:post) { create(:post, user:, content: 'hogehoge') }
 
     it 'ポストの投稿一覧を閲覧できること' do
       visit root_path
@@ -15,7 +15,6 @@ RSpec.describe 'ポスト機能', type: :system do
 
     it 'ポストの詳細画面を閲覧できること' do
       visit post_path(post)
-      click_on 'hogehoge'
       # 投稿者名
       expect(page).to have_content 'hoge'
       # 投稿本文
@@ -24,7 +23,7 @@ RSpec.describe 'ポスト機能', type: :system do
   end
 
   context 'ログインしてる時' do
-    let(:user) { create(:user, name: 'jojo') }
+    let!(:user) { create(:user, name: 'jojo') }
 
     before do
       sign_in user
@@ -36,14 +35,14 @@ RSpec.describe 'ポスト機能', type: :system do
       fill_in '内容', with: 'fuga'
       expect do
         click_on '作成'
-        expect(page).to have_content '投稿しました'
+        expect(page).to have_content '投稿を登録しました'
       end.to change(user.posts).by(1)
       expect(page).to have_content 'fuga'
       expect(page).to have_content 'jojo'
     end
 
     it '自分のポストは編集ができること' do
-      post = create(:post, :user, context: 'oraora')
+      post = create(:post, user:, content: 'oraora')
       visit post_path(post)
       expect(page).to have_content 'oraora'
       expect(page).to have_content 'jojo'
@@ -56,7 +55,7 @@ RSpec.describe 'ポスト機能', type: :system do
     end
 
     it '自分のポストは削除できること' do
-      post = create(:post, :user, context: 'wryyy')
+      post = create(:post, user:, content: 'wryyy')
       visit root_path
       click_on 'wryyy'
       expect(page).to have_current_path post_path(post)
