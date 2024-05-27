@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
   belongs_to :user
-  scope :default_order, -> { order(id: :desc) }
+  scope :default_order, -> { order(updated_at: :desc) }
 end
