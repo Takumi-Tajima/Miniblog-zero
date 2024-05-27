@@ -24,6 +24,8 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'debug'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'haml-rails'
   gem 'html2haml'
   gem 'rspec-rails'
@@ -34,4 +36,9 @@ end
 group :development do
   gem 'haml_lint', require: false
   gem 'web-console'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end

@@ -9,5 +9,10 @@
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
   %body
-    .container.mt-4
-      = yield
+    = render 'layouts/flash'
+    .row.container
+      .col-3.bg-body-tertiary
+        = render 'layouts/sidebar'
+      .col-2
+      .col-7
+        = yield
