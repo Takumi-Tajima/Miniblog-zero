@@ -62,6 +62,9 @@ jobs:
         run: |
           bundle exec rspec -f j -o tmp/rspec_results.json -f p
 
+      - name: Coverage Report by octocov (in this pull request)
+        uses: k1LoW/octocov-action@v0
+
       - name: RSpec Report
         uses: SonicGarden/rspec-report-action@v3
         with:
