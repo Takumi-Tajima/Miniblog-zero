@@ -55,22 +55,22 @@ jobs:
       - name: assets:precompile
         run: bin/rails assets:precompile
 
-      - name: Run rspec
-        env:
-          DISABLE_SPRING: 1
-          COVERAGE: true
-        run: |
-          bundle exec rspec -f j -o tmp/rspec_results.json -f p
+      # - name: Run rspec
+      #   env:
+      #     DISABLE_SPRING: 1
+      #     COVERAGE: true
+      #   run: |
+      #     bundle exec rspec -f j -o tmp/rspec_results.json -f p
 
-      - name: RSpec Report
-        uses: SonicGarden/rspec-report-action@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          json-path: tmp/rspec_results.json
-        if: always()
+      # - name: RSpec Report
+      #   uses: SonicGarden/rspec-report-action@v3
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     json-path: tmp/rspec_results.json
+      #   if: always()
 
-      - name: Coverage Report by octocov (in this pull request)
-        uses: k1LoW/octocov-action@v1
+      # - name: Coverage Report by octocov (in this pull request)
+      #   uses: k1LoW/octocov-action@v1
       # - name: Archive screenshot artifacts
       #   uses: actions/upload-artifact@v4
       #   with:
@@ -91,3 +91,20 @@ jobs:
       #     name: coverage
       #     path: coverage
       #   if: always()
+      - name: Run rspec
+        env:
+          COVERAGE: true
+        run: |
+          bin/rspec --require rails_helper -f j -o tmp/rspec_results.json -f p
+      - uses: SonicGarden/rspec-report-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          json-path: tmp/rspec_results.json
+        if: always()
+      - uses: k1LoW/octocov-action@v0
+      - name: Archive coverage artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+        if: always()

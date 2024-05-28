@@ -1,6 +1,4 @@
 coverage: # カバレッジ計測の設定
-  paths:
-    - coverage/.resultset.json # ここで指定した計測結果ファイルを読み込んで分析を行う
   acceptable: 70% # カバレッジがこの数値を下回るとCIがfailする
 testExecutionTime: # テスト実行時間
   steps:
