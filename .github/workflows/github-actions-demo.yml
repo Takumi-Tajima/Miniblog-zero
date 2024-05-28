@@ -95,7 +95,7 @@ jobs:
         env:
           COVERAGE: true
         run: |
-          bin/rspec --require rails_helper -f j -o tmp/rspec_results.json -f p
+          bundle exec rspec --require rails_helper -f j -o tmp/rspec_results.json -f p
       - uses: SonicGarden/rspec-report-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
