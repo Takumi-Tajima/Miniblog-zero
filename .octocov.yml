@@ -1,0 +1,14 @@
+coverage: # カバレッジ計測の設定
+  acceptable: 70% # カバレッジがこの数値を下回るとCIがfailする
+testExecutionTime: # テスト実行時間
+  steps:
+    - Exec rspec # この名前に対応するGitHub Actionsのstepの実行時間を計測する
+  acceptable: 3min # 実行時間がこの時間を上回るとCIがfailする
+comment: # レポート内容をコメント投稿設定
+  if: is_pull_request # PRの場合のみコメントを投稿する
+  hideFooterLink: false # フッターのoctocovのリンクを非表示にしない
+summary:
+  if: true
+report: # レポートの出力設定
+  datastores:
+    - artifact://${GITHUB_REPOSITORY} # レポートの出力先（GitHub ActionsのArtifactsに保存する）
