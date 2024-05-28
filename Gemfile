@@ -7,7 +7,6 @@ gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise'
-gem 'importmap-rails'
 gem 'jsbundling-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
