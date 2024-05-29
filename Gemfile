@@ -4,23 +4,16 @@ ruby '3.3.0'
 
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 
-gem 'sprockets-rails'
-
-gem 'devise'
-gem 'pg', '~> 1.1'
-
-gem 'puma', '>= 5.0'
-
-gem 'importmap-rails'
-
-gem 'simple_form'
-gem 'turbo-rails'
-
-gem 'stimulus-rails'
-
-gem 'cssbundling-rails'
-
 gem 'bootsnap', require: false
+gem 'cssbundling-rails'
+gem 'devise'
+gem 'jsbundling-rails'
+gem 'pg', '~> 1.1'
+gem 'puma', '>= 5.0'
+gem 'simple_form'
+gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 
 group :development, :test do
   gem 'debug'
