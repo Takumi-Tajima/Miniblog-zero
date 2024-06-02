@@ -7,11 +7,11 @@ class User < ApplicationRecord
   validates :name, presence: true, format: { with: /\A\w+\z/ }, length: { maximum: 20 }
 
   def follow(user)
-    active_relationships.create(followed_id: user.id)
+    active_relationships.create(followed_id: user)
   end
 
   def unfollow!(user)
-    active_relationships.find(followed_id: user.id).destroy!
+    active_relationships.find_by(followed_id: user).destroy!
   end
 
   def following?(user)
