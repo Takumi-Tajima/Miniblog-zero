@@ -1,45 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe 'フォロー機能', type: :system do
-  # ユーザーデータを生成x2
+  let(:user) { create(:user) }
+  let(:other) { create(:user, name: 'jojo') }
+
   context '他ユーザーをフォローしてない時' do
     before do
-      # ユーザーでログイン処理
-      # 投稿を作成
+      sign_in user
+      create(:post, user: other, content: '今日は猫の餌をあげた')
     end
+
     it 'フォローボタンを押すと、フォローできること' do
-      # 投稿一覧に訪れる
-      # 相手の該当の投稿を確認する
+      visit root_path
+      expect(page).to have_content 'jojo'
+      expect(page).to have_content '今日は猫の餌をあげた'
       expect do
-        # ボタンを押す
-        # フォロー解除が表示されることを確認する
-      end # user.relationshipsモデルが+1されている
-      # フォローボタンが消えたことを確認する
+        click_on 'フォロー'
+        expect(page).to have_content 'フォロー解除'
+      end.to change(user.followings, :count).by(1)
+      expect(page).not_to have_content('フォロー', exact: true)
     end
   end
 
   context '他のユーザーをフォローしている時' do
     before do
-      # ログイン処理
-      # 投稿を作成
-      # フォロー処理
+      sign_in user
+      create(:post, user: other, content: '裁くのは俺のスタンドだ')
+      user.follow(other.id)
     end
+
     it 'フォロー解除ボタンを押すと、フォロー解除できること' do
-      # 投稿一覧にいく
-      # 投稿を確認する
+      visit root_path
+      expect(page).to have_content 'jojo'
+      expect(page).to have_content '裁くのは俺のスタンドだ'
       expect do
-        # フォロー解除を押す
-        # 「フォロー解除」ボタンが「フォロー」になる
-      end # user.relationshipsモデルが-1されている
-      # フォロー解除ボタンがなくなっている
+        click_on 'フォロー解除'
+        expect(page).to have_content('フォロー')
+      end.to change(user.followings, :count).by(-1)
+      expect(page).not_to have_content('フォロー解除', exact: true)
     end
   end
 
   context 'ログインしてない時' do
-    # 投稿を作成→post_foctoryでuserを適当に決める
+    let(:post) { create(:post) }
+
     it 'フォローボタンが表示されていないこと' do
-      # 投稿一覧に訪れる
-      # フォローボタンがないことを確認する
+      visit root_path
+      expect(page).not_to have_content('フォロー', exact: true)
+      expect(page).not_to have_content 'フォロー解除'
     end
   end
 end
