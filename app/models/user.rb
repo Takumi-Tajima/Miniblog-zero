@@ -6,12 +6,12 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   validates :name, presence: true, format: { with: /\A\w+\z/ }, length: { maximum: 20 }
 
-  def follow(user)
-    active_relationships.create(followed_id: user)
+  def follow(user_id)
+    active_relationships.create(followed_id: user_id)
   end
 
-  def unfollow!(user)
-    active_relationships.find_by(followed_id: user).destroy!
+  def unfollow!(user_id)
+    active_relationships.find_by(followed_id: user_id).destroy!
   end
 
   def following?(user)
