@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   scope module: :users do
     resources :posts, only: %i[new create edit update destroy]
     resource :relationships, only: %i[create destroy]
-    get '/followings_posts', to: 'following_posts#index'
+    get '/following_posts', to: 'following_posts#index'
   end
   resources :posts, only: %i[index show]
 end
