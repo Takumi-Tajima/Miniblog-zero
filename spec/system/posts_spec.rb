@@ -81,5 +81,29 @@ RSpec.describe 'ポスト機能', type: :system do
         expect(page).not_to have_content '削除'
       end
     end
+
+    context 'フォロー中のユーザーの投稿ボタンを押した時' do
+      let(:dio) { create(:user, name: 'dio') }
+      let(:iggy) { create(:user, name: 'iggy') }
+
+      before do
+        create(:post, dio:, content: '最後に勝つのはこのdioだ')
+        create(:post, iggy:, content: '見殺しにはできねぇぜ')
+        user.follow(dio)
+      end
+
+      it '自分のフォローしているユーザーの投稿のみを閲覧できる' do
+        visit root_path
+        expect(page).to have_content 'dio'
+        expect(page).to have_content '最後に勝つのはこのdioだ'
+        expect(page).to have_content 'iggy'
+        expect(page).to have_content '見殺しにはできねぇぜ'
+        click_on 'フォロー中のユーザーの投稿'
+        expect(page).to have_content 'dio'
+        expect(page).to have_content '最後に勝つのはこのdioだ'
+        expect(page).not_to have_content 'iggy'
+        expect(page).not_to have_content '見殺しにはできねぇぜ'
+      end
+    end
   end
 end
