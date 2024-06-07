@@ -14,11 +14,13 @@ RSpec.describe 'フォロー機能', type: :system do
       visit root_path
       expect(page).to have_content 'jojo'
       expect(page).to have_content '今日は猫の餌をあげた'
-      expect do
-        click_on 'フォロー'
-        expect(page).to have_content 'フォロー解除'
-      end.to change(user.followings, :count).by(1)
-      expect(page).not_to have_content('フォロー', exact: true)
+      within '.list-group-item' do
+        expect do
+          click_on 'フォロー'
+          expect(page).to have_content 'フォロー解除'
+        end.to change(user.followings, :count).by(1)
+        expect(page).not_to have_content('フォロー', exact: true)
+      end
     end
   end
 
@@ -33,11 +35,13 @@ RSpec.describe 'フォロー機能', type: :system do
       visit root_path
       expect(page).to have_content 'jojo'
       expect(page).to have_content '裁くのは俺のスタンドだ'
-      expect do
-        click_on 'フォロー解除'
-        expect(page).to have_content('フォロー')
-      end.to change(user.followings, :count).by(-1)
-      expect(page).not_to have_content('フォロー解除', exact: true)
+      within '.list-group-item' do
+        expect do
+          click_on 'フォロー解除'
+          expect(page).to have_content('フォロー')
+        end.to change(user.followings, :count).by(-1)
+        expect(page).not_to have_content('フォロー解除', exact: true)
+      end
     end
   end
 
