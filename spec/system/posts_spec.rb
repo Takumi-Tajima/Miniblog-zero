@@ -87,9 +87,9 @@ RSpec.describe 'ポスト機能', type: :system do
       let(:iggy) { create(:user, name: 'iggy') }
 
       before do
-        create(:post, dio:, content: '最後に勝つのはこのdioだ')
-        create(:post, iggy:, content: '見殺しにはできねぇぜ')
-        user.follow(dio)
+        create(:post, user: dio, content: '最後に勝つのはこのdioだ')
+        create(:post, user: iggy, content: '見殺しにはできねぇぜ')
+        user.follow(dio.id)
       end
 
       it '自分のフォローしているユーザーの投稿のみを閲覧できる' do
