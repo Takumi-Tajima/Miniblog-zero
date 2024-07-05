@@ -44,3 +44,6 @@ config/database.yml
 
 # coverage
 /coverage
+
+# mdファイル
+*.md
