@@ -31,7 +31,7 @@ RSpec.describe 'フォロー機能', type: :system do
           click_on 'フォロー解除'
           expect(page).to have_button 'フォロー', exact: true
         end.to change(user.active_relationships, :count).by(-1)
-        expect(page).not_to have_button 'フォロー解除', exact: true
+        expect(page).not_to have_button 'フォロー解除'
       end
     end
   end
