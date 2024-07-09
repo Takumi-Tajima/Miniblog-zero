@@ -5,7 +5,7 @@ class Users::RelationshipsController < ApplicationController
   end
 
   def destroy
-    current_user.active_relationships.find_by(followed_id: params[:id]).destroy!
+    current_user.active_relationships.find_by(followed_id: params[:user_id]).destroy!
     redirect_to request.referer || root_path
   end
 end
