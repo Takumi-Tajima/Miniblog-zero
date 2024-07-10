@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe 'フォロー機能', type: :system do
   let(:user) { create(:user) }
   let(:other) { create(:user) }
-  let!(:post) { create(:post, user: other, content: 'スタンドのパワーを全開だ') }
 
   context 'ログインしている時' do
     before do
       sign_in user
+      create(:post, user: other, content: 'スタンドのパワーを全開だ')
     end
 
     it 'フォローできること' do
@@ -38,6 +38,7 @@ RSpec.describe 'フォロー機能', type: :system do
 
   context 'ログインしてない時' do
     it 'フォローボタンが表示されないこと' do
+      create(:post, user: other, content: 'スタンドのパワーを全開だ')
       visit root_path
       within '.list-group-item' do
         expect(page).to have_content 'スタンドのパワーを全開だ'
