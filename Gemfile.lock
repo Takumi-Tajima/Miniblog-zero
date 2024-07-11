@@ -135,6 +135,8 @@ GEM
       railties (>= 5.0.0)
     faker (3.3.1)
       i18n (>= 1.8.11, < 2)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     haml (6.3.0)
@@ -392,6 +394,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
+  font-awesome-rails
   haml-rails
   haml_lint
   html2haml
