@@ -8,5 +8,4 @@
         = render 'posts/follow_btn', post: post
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
-        = button_to 'いいね取り消し', post_likes_path(post.id), method: :delete
-        = button_to 'いいね', post_likes_path(post.id)
+        = render 'posts/likes_btn', post: post
