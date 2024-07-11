@@ -1,3 +1,6 @@
-= button_to 'いいね取り消し', post_likes_path(post.id), method: :delete
-= button_to 'いいね', post_likes_path(post.id)
-%i.fas.fa-shopping-cart
+- if liked_post_ids.include?(post.id)
+  = button_to post_likes_path(post.id), class: 'btn', method: :delete do
+    %i.fas.fa-regular.fa-heart.likes_btn.text-danger
+- else
+  = button_to post_likes_path(post.id), class: 'btn' do
+    %i.fas.fa-solid.fa-heart.unlikes_btn
