@@ -4,16 +4,14 @@ ruby '3.3.0'
 
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 
-gem 'sprockets-rails'
-
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise'
-gem 'font-awesome-rails'
-gem 'importmap-rails'
+gem 'jsbundling-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'simple_form'
+gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 
