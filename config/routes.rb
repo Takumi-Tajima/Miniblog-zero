@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
   resources :posts, only: %i[index show] do
     resource :likes, only: %i[create destroy], module: :posts
+    resources :like_users, only: %i[index], module: :posts
   end
 end
