@@ -9,3 +9,5 @@
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
         = render 'posts/likes_btn', post: post, liked_post_ids: @liked_post_ids
+      .text-sm
+        = link_to post.likes.length, post_like_users_path(post)
