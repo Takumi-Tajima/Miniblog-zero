@@ -7,7 +7,15 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   validates :name, presence: true, format: { with: /\A[\w_.-]+\z/, message: 'の入力形式が違います' }, length: { maximum: 20 }
 
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy, inverse_of: 'followed'
+  has_many :followers, through: :passive_relationships, source: :follower
+
   def following?(user)
     followings.include?(user)
+  end
+
+  # preloadの効いているuserから呼び出す
+  def followed_by?(user)
+    followers.include?(user)
   end
 end
