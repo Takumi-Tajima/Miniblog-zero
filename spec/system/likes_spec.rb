@@ -14,14 +14,14 @@ RSpec.describe 'いいね機能', type: :system do
       visit root_path
       within('.list-group-item') do
         expect(page).to have_content 'wryyyyyyy'
-        expect(page).to have_css 'button[test_id="not-like"]'
+        expect(page).to have_css 'button[test_id="like"]'
         expect(page).to have_link 1, href: post_like_users_path(post)
       end
     end
 
     it 'いいねボタンを押すとログイン画面に遷移する' do
       visit root_path
-      find('button[test_id="not-like"]').click
+      find('button[test_id="like"]').click
       expect(page).to have_content 'ログインもしくはアカウント登録してください。'
     end
   end
@@ -40,8 +40,8 @@ RSpec.describe 'いいね機能', type: :system do
       visit root_path
       within('.list-group-item') do
         expect do
-          find('button[test_id="not-like"]').click
-          expect(page).to have_css('button[test_id="like"]')
+          find('button[test_id="like"]').click
+          expect(page).to have_css('button[test_id="not-like"]')
         end.to change(user.likes, :count).by(1)
         expect(page).to have_link 1, href: post_like_users_path(post)
       end
@@ -53,8 +53,8 @@ RSpec.describe 'いいね機能', type: :system do
       expect(page).to have_link 1, href: post_like_users_path(post)
       within('.list-group-item') do
         expect do
-          find('button[test_id="like"]').click
-          expect(page).to have_css('button[test_id="not-like"]')
+          find('button[test_id="not-like"]').click
+          expect(page).to have_css('button[test_id="like"]')
         end.to change(user.likes, :count).by(-1)
         expect(page).not_to have_link 1, href: post_like_users_path(post)
       end

@@ -1,6 +1,6 @@
 - if liked_post_ids.include?(post.id)
-  = button_to post_likes_path(post.id), class: 'btn', test_id: 'like', method: :delete do
+  = button_to post_likes_path(post.id), class: 'btn', test_id: 'not-like', method: :delete do
     %i.fas.fa-regular.fa-heart.likes_btn.text-danger
 - else
-  = button_to post_likes_path(post.id), class: 'btn', test_id: 'not-like' do
+  = button_to post_likes_path(post.id), class: 'btn', test_id: 'like' do
     %i.fas.fa-solid.fa-heart.unlikes_btn
