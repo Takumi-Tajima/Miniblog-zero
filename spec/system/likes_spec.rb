@@ -50,8 +50,8 @@ RSpec.describe 'いいね機能', type: :system do
     it 'いいねを消せること' do
       user.likes.create(post_id: post.id)
       visit root_path
-      expect(page).to have_link 1, href: post_like_users_path(post)
       within('.list-group-item') do
+        expect(page).to have_link 1, href: post_like_users_path(post)
         expect do
           find('button[test_id="not-like"]').click
           expect(page).to have_css('button[test_id="like"]')
