@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[new create edit update destroy]
     resource :relationships, only: %i[create destroy]
   end
-  resources :posts, only: %i[index show]
+  resources :posts, only: %i[index show] do
+    resource :likes, only: %i[create destroy], module: :posts
+  end
 end
