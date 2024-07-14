@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @posts = Post.default_order.preload(:user)
+    @posts = Post.default_order.preload(:user, :likes)
     @liked_post_ids = current_user ? current_user.likes.pluck(:post_id) : []
   end
 
