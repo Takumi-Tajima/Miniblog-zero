@@ -8,4 +8,7 @@
         = render 'posts/follow_btn', post: post
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
+      .text-sm.d-flex.flex-row-reverse
+        - if post.likes.present?
+          = link_to post.likes.length, post_like_users_path(post)
         = render 'posts/likes_btn', post: post, liked_post_ids: @liked_post_ids
