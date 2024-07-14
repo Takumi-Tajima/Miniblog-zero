@@ -3,14 +3,12 @@ class Posts::LikesController < ApplicationController
   end
 
   def create
-    @like = current_user.likes.build(post_id: params[:post_id])
-    @like.save!
+    current_user.likes.create!(post_id: params[:post_id])
     redirect_to request.referer || root_path
   end
 
   def destroy
-    @like = current_user.likes.find_by(post_id: params[:post_id])
-    @like.destroy!
+    current_user.likes.find_by(post_id: params[:post_id]).destroy!
     redirect_to request.referer || root_path
   end
 end
