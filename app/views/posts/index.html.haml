@@ -5,7 +5,6 @@
         = post.user.name
       .d-flex.justify-content-between
         = link_to post.content, post_path(post), class: 'text-decoration-none text-body'
-        = render 'posts/follow_btn', user: post.user
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
         = render 'posts/likes_btn', post:

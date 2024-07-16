@@ -6,6 +6,7 @@
       = @post.content
     .text-sm.text-secondary.text-end.mt-2
       = l @post.created_at
+  = render 'posts/follow_btn', user: @post.user
   .d-flex.justify-content-between.mt-3
     - if current_user == @post.user
       = link_to '編集', edit_post_path, class: 'btn btn-success'
