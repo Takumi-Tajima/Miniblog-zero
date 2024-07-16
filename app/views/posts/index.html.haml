@@ -5,7 +5,6 @@
         = post.user.name
       .d-flex.justify-content-between
         = link_to post.content, post_path(post), class: 'text-decoration-none text-body'
-        = button_to 'フォロー', relationships_path(user_id: post.user_id)
-        = button_to 'フォロー解除', relationships_path(user_id: post.user_id), method: :delete
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
+        = render 'posts/likes_btn', post:

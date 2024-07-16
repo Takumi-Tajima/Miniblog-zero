@@ -1,0 +1,6 @@
+- if user_signed_in? && post.liked_by?(current_user)
+  = button_to post_likes_path(post.id), class: 'btn', method: :delete do
+    %i.far.fa-solid.fa-heart.likes_btn.text-danger
+- else
+  = button_to post_likes_path(post.id), class: 'btn' do
+    %i.far.fa-regular.fa-heart.unlikes_btn.text-muted

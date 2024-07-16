@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @posts = Post.default_order.preload(:user)
+    @posts = Post.default_order.preload(:user, :likes)
   end
 
   def show; end
