@@ -12,4 +12,8 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  def followed_by?(user)
+    followers.include?(user)
+  end
 end
